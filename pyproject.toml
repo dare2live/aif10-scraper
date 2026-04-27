@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aif10-scraper"
+version = "0.1.0"
+description = "东方财富妙想 F10 全量解析 + 可入库 DDL 自动生成"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Jim Morrison", email = "morrison416cn@gmail.com" }]
+requires-python = ">=3.9"
+dependencies = [
+    "requests>=2.28",
+]
+
+[project.optional-dependencies]
+duckdb = ["duckdb>=0.9"]
+dev = ["pytest>=7", "duckdb>=0.9"]
+
+[project.urls]
+Homepage = "https://github.com/dare2live/aif10-scraper"
+Issues = "https://github.com/dare2live/aif10-scraper/issues"
+
+[tool.setuptools.packages.find]
+include = ["aif10_scraper*"]
+exclude = ["tests*", "stress*", "examples*", "scripts*", "schema*"]
