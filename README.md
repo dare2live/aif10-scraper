@@ -20,7 +20,7 @@ result = call_hsf10('RPT_STOCKVALUATIONTANTILE', page=1, page_size=500)
 # pages=187 count=93285 (全市场 × 全历史)
 ```
 
-187 页 × 0.3s = 60 秒拿到全市场所有股票全历史估值分位. 比 Phase 1 datacenter-web 逐股快 4-27 倍.
+187 页 × 0.3s = 60 秒拿到全市场所有股票全历史估值分位.
 
 ## 模块概览 (注册表 72 项 / 全部 batch_friendly)
 
@@ -94,7 +94,7 @@ aif10_scraper/
 │   ├── batch.py             # 顺序 + 异步并发分页 (concurrency=20 甜蜜点)
 │   └── orm/                 # SQL DDL 自动生成 (从样本 → CREATE TABLE)
 │       ├── type_infer.py    # 字段类型推断 (BOOLEAN/INT/DOUBLE/DATE/TIMESTAMP/VARCHAR/JSON)
-│       └── ddl.py           # DuckDB / SQLite / Postgres 三方言
+│       └── ddl.py           # DuckDB / Postgres 方言
 ├── scripts/
 │   ├── generate_ddl.py      # CLI: 拉样本 → schema/<name>.sql
 │   └── validate_schema.py   # 用 DuckDB :memory: 校验 DDL 都能跑

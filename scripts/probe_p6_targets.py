@@ -1,4 +1,4 @@
-"""P6 迁移目标实测 — 跑一遍所有计划用妙想替代 datacenter-web 的 reportName + 5 个独家.
+"""P6 迁移目标实测 — 跑一遍所有计划迁到妙想的 reportName + 5 个独家.
 
 用茅台 600519.SH 为基准, 报告每个接口的:
 - 状态 (200 / 0 行 / 失败)
@@ -28,12 +28,12 @@ SECUCODE = "600519.SH"
 # (capability_name, reportName, kwargs_overrides)
 # kwargs: secucode 默认=600519.SH, page_size 默认=10
 PROBES = [
-    # ===== P6 迁移: 替代 datacenter-web 直连的 =====
-    ("十大流通股东 (原 datacenter-web RPT_F10_EH_FREEHOLDERS)", "RPT_F10_EH_FREEHOLDERS", {}),
-    ("龙虎榜 (原 datacenter-web RPT_DAILYBILLBOARD_*)", "RPT_DAILYBILLBOARD_DETAILSNEW", {}),
+    # ===== P6 迁移接入能力 =====
+    ("十大流通股东 (RPT_F10_EH_FREEHOLDERS)", "RPT_F10_EH_FREEHOLDERS", {}),
+    ("龙虎榜 (RPT_DAILYBILLBOARD_*)", "RPT_DAILYBILLBOARD_DETAILSNEW", {}),
     ("龙虎榜营业部", "RPT_OPERATEDEPT_TRADE", {}),
     ("大宗交易", "RPT_DATA_BLOCKTRADE", {}),
-    ("融资融券 (原 datacenter-web RPT_MARGIN_*)", "RPT_MARGIN_STATISTICS_STOCKS", {}),
+    ("融资融券 (RPT_MARGIN_*)", "RPT_MARGIN_STATISTICS_STOCKS", {}),
     ("融券趋势解释", "RPT_STOCK_MARGINTRENDEXPLAIN", {}),
     ("机构持仓 ORG_TYPE 分桶 (含 QFII=02)", "RPT_F10_MAIN_ORGHOLDDETAILS", {}),
     ("QFII 持仓 (特殊报表)", "RPT_DMSK_HOLDERS", {}),

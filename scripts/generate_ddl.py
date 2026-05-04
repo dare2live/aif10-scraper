@@ -138,7 +138,7 @@ def main() -> int:
     parser.add_argument("--module", help="只跑某模块")
     parser.add_argument("--all", action="store_true", help="全部 reportName")
     parser.add_argument("--dialect", default="duckdb",
-                        choices=["duckdb", "sqlite", "postgres"])
+                        choices=["duckdb", "postgres"])
     parser.add_argument("--page-size", type=int, default=200,
                         help="样本量, 越大类型推断越准 (默认 200)")
     args = parser.parse_args()

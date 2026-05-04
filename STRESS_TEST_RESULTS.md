@@ -89,4 +89,4 @@ fetch_report(
 | 历史深度 | 8-200 期 (按报表) | ~250 个交易日 |
 | 单 IP QPS | 26 页/秒, 不限流 | RemoteDisconnected 卡死 |
 
-教训: **不是所有 eastmoney 子域都受反爬制约**, datacenter (含 datacenter-web) 是数据中心公开 API, 完全可批量拉; push2 系列是行情快照, 反爬严格.
+教训: **不是所有 eastmoney 子域都受反爬制约**, aif10 数据中心接口可批量拉; push2 系列是行情快照, 反爬严格.

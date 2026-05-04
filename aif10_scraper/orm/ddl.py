@@ -1,8 +1,7 @@
 """DDL 生成: 把 ReportSpec + 样本 rows 翻译成 CREATE TABLE.
 
-输出三种风格:
+输出两种风格:
 - duckdb (默认): JSON 类型原生支持, IF NOT EXISTS
-- sqlite: 退化, JSON 转 TEXT, 没有 BOOLEAN (用 INTEGER), TIMESTAMP 转 TEXT
 - postgres: 标准, JSONB
 """
 from __future__ import annotations
@@ -13,7 +12,7 @@ from ..registry import ReportSpec, get_report
 from .type_infer import ColumnInfo, infer_schema, ColumnType
 
 
-Dialect = Literal["duckdb", "sqlite", "postgres"]
+Dialect = Literal["duckdb", "postgres"]
 
 
 # 各方言的类型 mapping
@@ -28,17 +27,6 @@ _TYPE_MAP: dict[Dialect, dict[ColumnType, str]] = {
         "VARCHAR": "VARCHAR",
         "TEXT": "VARCHAR",
         "JSON": "JSON",
-    },
-    "sqlite": {
-        "BOOLEAN": "INTEGER",
-        "INTEGER": "INTEGER",
-        "BIGINT": "INTEGER",
-        "DOUBLE": "REAL",
-        "DATE": "TEXT",
-        "TIMESTAMP": "TEXT",
-        "VARCHAR": "TEXT",
-        "TEXT": "TEXT",
-        "JSON": "TEXT",
     },
     "postgres": {
         "BOOLEAN": "BOOLEAN",
@@ -86,7 +74,7 @@ def generate_ddl(
         report_name: reportName (用于注释 + spec 查询)
         rows: 样本数据, 越多越准 (推荐 ≥1 page = 500 行)
         spec: 可选 — 若不传则尝试从 registry 查
-        dialect: duckdb / sqlite / postgres
+        dialect: duckdb / postgres
         table_name: 表名 (默认 report_name 小写)
         if_not_exists: 加 IF NOT EXISTS
         create_indexes: 同时输出 date_field 索引
