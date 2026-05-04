@@ -80,13 +80,14 @@ REPORTS: list[ReportSpec] = [
         notes="PE/PB/PS/PEG 在 1Y/3Y/5Y/10Y 的 30/50/70 分位",
     ),
     ReportSpec(
-        name="RPT_BILLBOARD_DAILYDETAILS",
+        name="RPT_DAILYBILLBOARD_DETAILSNEW",
         module="trading", subname="龙虎榜单 (操盘版)",
-        key=("SECUCODE", "TRADE_DATE"),
+        key=("SECUCODE", "TRADE_DATE", "EXPLANATION"),
         date_field="TRADE_DATE",
         frequency="event",
-        sort_columns="TRADE_DATE",
-        notes="个股龙虎榜每日明细",
+        sort_columns="SECURITY_CODE,TRADE_DATE",
+        sort_types="1,-1",
+        notes="个股龙虎榜每日明细; chunky lhb_client 实际使用",
     ),
     ReportSpec(
         name="RPT_OPERATEDEPT_TRADE",
@@ -205,6 +206,16 @@ REPORTS: list[ReportSpec] = [
         key=("SECUCODE", "TRADE_DATE"),
         date_field="TRADE_DATE",
         frequency="daily",
+    ),
+    ReportSpec(
+        name="RPT_DMSK_HOLDERS",
+        module="shareholder", subname="QFII 持仓 (特殊报表)",
+        key=("SECUCODE", "END_DATE", "HOLDER_NAME", "RANK"),
+        date_field="END_DATE",
+        frequency="quarterly",
+        sort_columns="NOTICE_DATE,SECURITY_CODE,RANK",
+        sort_types="-1,1,1",
+        notes="chunky qfii_client 实际使用; extra_filters: HOLDER_NEWTYPE=QFII, HOLDNUM_CHANGE_NAME, END_DATE",
     ),
 
     # ===== 3. 经营分析 (Business) - 3 reports =====
@@ -408,6 +419,16 @@ REPORTS: list[ReportSpec] = [
     ),
 
     # ===== 10. 研究报告 (Research) - 走 np-creport-pc, 单独处理 =====
+    ReportSpec(
+        name="RPT_ORG_SURVEYNEW",
+        module="research", subname="机构调研 (特殊报表)",
+        key=("SECUCODE", "NOTICE_DATE", "RECEIVE_START_DATE"),
+        date_field="NOTICE_DATE",
+        frequency="daily",
+        sort_columns="NOTICE_DATE,SECURITY_CODE",
+        sort_types="-1,1",
+        notes="chunky institution_survey_client 实际使用; extra_filters: NOTICE_DATE 增量",
+    ),
 
     # ===== 11. 财务分析 (Financial) - 12 reports =====
     ReportSpec(

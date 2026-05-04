@@ -30,12 +30,14 @@ SECUCODE = "600519.SH"
 PROBES = [
     # ===== P6 迁移: 替代 datacenter-web 直连的 =====
     ("十大流通股东 (原 datacenter-web RPT_F10_EH_FREEHOLDERS)", "RPT_F10_EH_FREEHOLDERS", {}),
-    ("龙虎榜 (原 datacenter-web RPT_DAILYBILLBOARD_*)", "RPT_BILLBOARD_DAILYDETAILS", {}),
+    ("龙虎榜 (原 datacenter-web RPT_DAILYBILLBOARD_*)", "RPT_DAILYBILLBOARD_DETAILSNEW", {}),
     ("龙虎榜营业部", "RPT_OPERATEDEPT_TRADE", {}),
     ("大宗交易", "RPT_DATA_BLOCKTRADE", {}),
     ("融资融券 (原 datacenter-web RPT_MARGIN_*)", "RPT_MARGIN_STATISTICS_STOCKS", {}),
     ("融券趋势解释", "RPT_STOCK_MARGINTRENDEXPLAIN", {}),
     ("机构持仓 ORG_TYPE 分桶 (含 QFII=02)", "RPT_F10_MAIN_ORGHOLDDETAILS", {}),
+    ("QFII 持仓 (特殊报表)", "RPT_DMSK_HOLDERS", {}),
+    ("机构调研 (特殊报表)", "RPT_ORG_SURVEYNEW", {}),
 
     # ===== 妙想独家 (tdxhub 没的) =====
     ("股东人数趋势 ⭐", "RPT_F10_EH_HOLDERNUM", {}),
